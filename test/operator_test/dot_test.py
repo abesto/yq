@@ -1,15 +1,14 @@
 from unittest import TestCase
-from mock import sentinel
 from yq.operators.dot import Dot
 from yq.operators.match_error import MatchError
 
 
 class DotTest(TestCase):
-    data = {sentinel.key: sentinel.value}
+    data = {'foo': 'bar'}
 
     def test_simple(self):
-        dot = Dot(sentinel.key)
-        self.assertEqual(dot.apply(self.data), sentinel.value)
+        dot = Dot('foo')
+        self.assertEqual(dot.apply(self.data), 'bar')
 
     def test_repr(self):
         self.assertEqual(repr(Dot('foo')), '.foo')
@@ -19,9 +18,9 @@ class DotTest(TestCase):
         self.assertEqual(Dot().apply(self.data), self.data)
 
     def test_no_such_key(self):
-        dot = Dot('foo')
+        dot = Dot('gah')
         with self.assertRaises(MatchError) as cm:
             dot.apply(self.data)
         self.assertIs(cm.exception.operator, dot)
         self.assertIs(cm.exception.data, self.data)
-        self.assertEqual(cm.exception.error, 'key "foo" not found')
+        self.assertEqual(cm.exception.error, 'key "gah" not found')

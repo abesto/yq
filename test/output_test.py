@@ -8,6 +8,9 @@ class OutputTest(TestCase):
     def test_output_string(self):
         self.assertEqual(output('foo'), 'foo')
 
+    def test_output_int(self):
+        self.assertEqual(output(1), '1')
+
     @patch('yq.output.yaml')
     def test_output_dict(self, mock_yaml):
         data = {'foo': 'bar'}

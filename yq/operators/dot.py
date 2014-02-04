@@ -3,6 +3,7 @@ from yq.operators.match_error import MatchError
 
 class Dot(object):
     def __init__(self, key=''):
+        assert isinstance(key, str)
         self.key = key
 
     def apply(self, data):
