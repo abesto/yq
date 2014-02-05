@@ -1,4 +1,5 @@
 from pyparsing import *
+from yq.operators.Comprehension import Comprehension
 from yq.operators.dot import Dot
 from yq.operators.projection import Projection, ProjectionItem
 from yq.operators.sequence import Sequence
@@ -31,8 +32,9 @@ projectionItem = (
 )
 projection = ('{' + delimitedList(projectionItem, ',') + '}').setParseAction(lambda ts: Projection(ts[1:-1]))
 
+comprehension = ('[' + operation + ']').setParseAction(lambda ts: Comprehension(ts[1]))
 
-operation << (chainable | projection)
+operation << (chainable | projection | comprehension)
 
 piped = delimitedList(operation, '|').setParseAction(lambda ts: Sequence(ts.asList()))
 
