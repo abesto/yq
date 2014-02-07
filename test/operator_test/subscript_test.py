@@ -6,7 +6,7 @@ from yq.operators.subscript import Subscript
 class SubscriptTestCase(TestCase):
     def test_simple(self):
         self.assertEqual(
-            Subscript(1).apply(['foo', 'bar', 'baz']),
+            Subscript(1)._apply_item(['foo', 'bar', 'baz']),
             'bar'
         )
 
@@ -17,5 +17,4 @@ class SubscriptTestCase(TestCase):
         )
 
     def test_index_out_of_range(self):
-        with self.assertRaises(MatchError):
-            Subscript(1).apply([])
+        self.assertIsNone(Subscript(1)._apply_item([]))

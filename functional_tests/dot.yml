@@ -1,0 +1,22 @@
+- filter: .
+  input: Hello, World!
+  output: Hello, World!
+
+- filter: .foo
+  input:
+    foo: 42
+    bar: less interesting data
+  output: 42
+
+- filter: .foo
+  input:
+    notfoo: true
+    alsonotfoo: false
+  output: null
+
+- skip: true
+  comment: "The jq docs say this should work, but jq barfs on it, so we don't support it either"
+  filter: ."foo"
+  input:
+    foo: 42
+  output: 42

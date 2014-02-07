@@ -1,18 +1,17 @@
-from yq.operators.match_error import MatchError
+from yq.operators.base import Operator
 
 
-class Subscript(object):
+class Subscript(Operator):
     def __init__(self, index):
         assert isinstance(index, int)
         self.index = index
 
-    def apply(self, data):
-        if self.index == '':
-            return data
+    def _apply_item(self, data):
+        # TODO: check that data is a list
         try:
             return data[self.index]
         except IndexError:
-            raise MatchError(self, data, 'index "%d" not found' % self.index)
+            return None
 
     def __repr__(self):
         return '[%s]' % self.index

@@ -1,20 +1,21 @@
+from yq.operators.base import Operator
 from yq.operators.match_error import MatchError
 
 
-class Dot(object):
+class Dot(Operator):
     def __init__(self, key=''):
         assert isinstance(key, str)
         self.key = key
 
-    def apply(self, data):
-        if not isinstance(data, dict):
-            raise MatchError(self, data, 'tried to access field %s on a non-object' % self)
+    def _apply_item(self, data):
         if self.key == '':
             return data
+        if not isinstance(data, dict):
+            raise MatchError(self, data, 'tried to access field %s on a non-object' % self)
         try:
             return data[self.key]
         except KeyError:
-            raise MatchError(self, data, 'key "%s" not found' % self.key)
+            return None
 
     def __repr__(self):
         return '.%s' % self.key

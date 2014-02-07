@@ -8,7 +8,7 @@ class ProjectionTestCase(TestCase):
     def simple_test(self):
         p = Projection([ProjectionItem('foo', Dot('foo')), ProjectionItem('blam', Dot('blam'))])
         data = {'foo': 'bar', 'baz': 3, 'blam': 30}
-        self.assertDictEqual(p.apply(data), {'foo': 'bar', 'blam': 30})
+        self.assertDictEqual(p._apply_item(data), {'foo': 'bar', 'blam': 30})
 
     def test_simple_repr(self):
         p = Projection([ProjectionItem('foo', Dot('foo')), ProjectionItem('blam', Dot('blam'))])
@@ -22,10 +22,4 @@ class ProjectionTestCase(TestCase):
             repr(Projection([ProjectionItem('foo', Dot('bar'))])),
             '{foo: .bar}'
         )
-
-    def test_not_an_object(self):
-        p = Projection([])
-        with self.assertRaises(MatchError) as cm:
-            p.apply([1,2,3])
-        self.assertEqual(cm.exception.error, 'tried to apply projection %s to non-object' % p)
 

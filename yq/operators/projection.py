@@ -1,3 +1,4 @@
+from yq.operators.base import Operator
 from yq.operators.dot import Dot
 from yq.operators.match_error import MatchError
 
@@ -8,16 +9,14 @@ class ProjectionItem(object):
         self.op = op
 
 
-class Projection(object):
+class Projection(Operator):
     def __init__(self, items):
         self.items = items
 
-    def apply(self, data):
-        if not isinstance(data, dict):
-            raise MatchError(self, data, 'tried to apply projection %s to non-object' % self)
+    def _apply_item(self, data):
         retval = {}
         for item in self.items:
-            retval[item.key] = item.op.apply(data)
+            retval[item.key] = item.op._apply_item(data)
         return retval
 
     def __repr__(self):

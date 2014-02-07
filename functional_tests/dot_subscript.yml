@@ -1,0 +1,36 @@
+- filter: .[0]
+  input:
+    - name: JSON
+      good: true
+    - name: XML
+      good: false
+  output:
+    name: JSON
+    good: true
+
+- filter: .[2]
+  input:
+    - name: JSON
+      good: true
+    - name: XML
+      good: false
+  output: null
+
+- filter: .[2:4]
+  input: abcdefghi
+  output: cd
+
+- filter: .[:3]
+  input: [a, b, c, d, e]
+  output: [[a, b, c]]
+
+- filter: .[-2:]
+  input: [a, b, c, d, e]
+  output: [[d, e]]
+
+- filter: .["foo"]
+  comment: Not an example in the jq docs, but hinted at in text. Also, it works with jq.
+  input:
+    foo: 42
+    bar: baz
+  output: 42

@@ -1,10 +1,13 @@
-class Sequence(object):
+from yq.operators.base import Operator
+
+
+class Sequence(Operator):
     def __init__(self, operators):
         self.operators = operators
 
-    def apply(self, data):
+    def _apply_item(self, data):
         for operator in self.operators:
-            data = operator.apply(data)
+            data = operator._apply_item(data)
         return data
 
     def __repr__(self):
