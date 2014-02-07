@@ -1,5 +1,5 @@
 from pyparsing import *
-from yq.operators.Comprehension import Comprehension
+from yq.operators.comprehension import Comprehension
 from yq.operators.dot import Dot
 from yq.operators.projection import Projection, ProjectionItem
 from yq.operators.sequence import Sequence

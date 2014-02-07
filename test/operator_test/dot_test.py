@@ -24,3 +24,9 @@ class DotTest(TestCase):
         self.assertIs(cm.exception.operator, dot)
         self.assertIs(cm.exception.data, self.data)
         self.assertEqual(cm.exception.error, 'key "gah" not found')
+
+    def test_not_an_object(self):
+        dot = Dot('bah')
+        with self.assertRaises(MatchError) as cm:
+            dot.apply([1,2,3])
+        self.assertEqual(cm.exception.error, 'tried to access field .bah on a non-object')

@@ -7,6 +7,8 @@ class Dot(object):
         self.key = key
 
     def apply(self, data):
+        if not isinstance(data, dict):
+            raise MatchError(self, data, 'tried to access field %s on a non-object' % self)
         if self.key == '':
             return data
         try:
