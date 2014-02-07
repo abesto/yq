@@ -1,0 +1,23 @@
+- filter: ".foo, .bar"
+  input:
+    foo: 42
+    bar: something else
+    baz: true
+  output_list:
+    - 42
+    - something else
+
+- filter: ".user, .projects[]"
+  input:
+    user: abesto
+    projects:
+      - yq
+      - hs-snakelike
+  output_list:
+    - abesto
+    - yq
+    - hs-snakelike
+
+- filter: ".[4,2]"
+  input: [a, b, c, d, e]
+  output_list: [e, c]

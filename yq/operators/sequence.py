@@ -5,9 +5,9 @@ class Sequence(Operator):
     def __init__(self, operators):
         self.operators = operators
 
-    def _apply_item(self, data):
+    def apply(self, data):
         for operator in self.operators:
-            data = operator._apply_item(data)
+            data = operator.apply(data)
         return data
 
     def __repr__(self):

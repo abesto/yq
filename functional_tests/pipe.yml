@@ -1,0 +1,7 @@
+- filter: '.[] | .name'
+  input:
+    - name: YAML
+      good: true
+    - name: XML
+      good: false
+  output_list: [YAML, XML]

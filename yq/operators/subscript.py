@@ -2,17 +2,18 @@ from yq.operators.base import Operator
 
 
 class Subscript(Operator):
-    def __init__(self, index):
-        assert isinstance(index, int)
-        self.index = index
+    def __init__(self, indices):
+        self.indices = indices
 
-    def _apply_item(self, data):
-        # TODO: check that data is a list
-        try:
-            return data[self.index]
-        except IndexError:
-            return None
+    def apply(self, data):
+        retval = []
+        for i in self.indices:
+            try:
+                retval.append(data[0][i])
+            except IndexError:
+                retval.append(None)
+        return retval
 
     def __repr__(self):
-        return '[%s]' % self.index
+        return '[%s]' % ','.join(self.indices)
 

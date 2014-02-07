@@ -20,9 +20,11 @@ class FunctionalTestCase(object):
 
     def __call__(self):
         output = cli.main(self.case['filter'], yaml.dump(self.case['input']))
-        if not isinstance(self.case['output'], list):
-            self.case['output'] = [self.case['output']]
-        for expected in self.case['output']:
+        if 'output' in self.case:
+            expected_list = [self.case['output']]
+        else:
+            expected_list = self.case['output_list']
+        for expected in expected_list:
             actual = output.next()
             print 'Actual: %s\nExpected: %s' % (actual, expected)
             assert actual == expected
