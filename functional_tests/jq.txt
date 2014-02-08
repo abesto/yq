@@ -5,27 +5,22 @@
 # Simple value tests to check parser. Input is irrelevant
 #
 
-skip
 true
 null
 true
 
-skip
 false
 null
 false
 
-skip
 null
 42
 null
 
-skip
 1
 null
 1
 
-skip
 -1
 null
 -1

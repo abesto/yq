@@ -1,6 +1,8 @@
 from pyparsing import *
+import yaml
 from yq.operators.comma import Comma
 from yq.operators.comprehension import Comprehension
+from yq.operators.constant import Constant
 from yq.operators.dot import Dot
 from yq.operators.extract import Extract
 from yq.operators.projection import Projection, ProjectionItem
@@ -19,19 +21,24 @@ def wtf(ts):
 
 key = lambda: Word(alphanums + '_')
 
-operation = Forward()
+# Literal values
+literals = oneOf('true false null') | ('"'+Word(alphanums)+'"') | (Word(nums + '- .'))
+literals.setParseAction(lambda ts: Constant(yaml.load(ts[0])))
 
-extract = Literal('[]').setParseAction(Extract)
+# Operations
+operation = Forward()
 
 emptyDot = Literal('.').setParseAction(lambda ts: Dot())
 dot = (('.' + key()) |
        ('.["' + key() + '"]') |
        ('."' + key() + '"')).setParseAction(lambda ts: Dot(ts[1]))
 
+extract = Literal('[]').setParseAction(Extract)
+
 subscript = ('[' + delimitedList(Word(nums)) + ']').setParseAction(lambda ts: Subscript(map(int, ts[1:-1])))
 subsequence = ('[' + Optional(Word(nums + '-'), None) + ':' + Optional(Word(nums + '-'), None) + ']').setParseAction(lambda ts: Subsequence(ts[1], ts[3]))
 
-chainable = extract | dot | emptyDot | subscript | subsequence
+chainable = extract | dot | emptyDot | subscript | subsequence | literals
 chain = OneOrMore(chainable).setParseAction(lambda ts: Sequence(ts.asList()))
 
 comma = delimitedList(chain).setParseAction(Comma)

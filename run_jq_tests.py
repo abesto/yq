@@ -38,13 +38,6 @@ class FunctionalTestCase(object):
         for expected in expected_list:
             actual = output.next()
             print 'Actual: %s\nExpected: %s' % (actual, expected)
-            try:
-                actual = int(actual)
-            except:
-                pass
-            try:
-                expected = int(expected)
-            except:
-                pass
+            expected = yaml.load(expected)
             assert actual == expected
 
