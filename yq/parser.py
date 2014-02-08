@@ -24,8 +24,9 @@ operation = Forward()
 extract = Literal('[]').setParseAction(Extract)
 
 emptyDot = Literal('.').setParseAction(lambda ts: Dot())
-dot = (('.' + key()).setParseAction(lambda ts: Dot(ts[1])) |
-       ('.["' + key() + '"]').setParseAction(lambda ts: Dot(ts[1])))
+dot = (('.' + key()) |
+       ('.["' + key() + '"]') |
+       ('."' + key() + '"')).setParseAction(lambda ts: Dot(ts[1]))
 
 subscript = ('[' + delimitedList(Word(nums)) + ']').setParseAction(lambda ts: Subscript(map(int, ts[1:-1])))
 subsequence = ('[' + Optional(Word(nums + '-'), None) + ':' + Optional(Word(nums + '-'), None) + ']').setParseAction(lambda ts: Subsequence(ts[1], ts[3]))

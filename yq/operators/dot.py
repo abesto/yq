@@ -4,7 +4,6 @@ from yq.operators.match_error import MatchError
 
 class Dot(Operator):
     def __init__(self, key=''):
-        assert isinstance(key, str)
         self.key = key
 
     def _apply_item(self, data):
