@@ -27,7 +27,6 @@ null
 
 # FIXME: much more number testing needed
 
-skip
 {}
 null
 {}
