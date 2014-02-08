@@ -9,7 +9,12 @@ works.
 
 ## Testing
 There are basic unit-tests for some of the operators, but the meat of the test suite are the functional tests defined
-in `functional_tests/*.yml` files and run by `run_functional_tests.py`. They're all started by `nosetests`.
+in `functional_tests/*.yml` files and run by `run_functional_tests.py`.
+
+The whole test suite of `jq` is in `functional_tests/jq.txt`, run by `run_jq_tests.py`. Sections starting with a line
+containing `skip` are, surprisingly, skipped - until that functionality is implemented.
+
+They're all started by `nosetests`
 
 ## Roadmap
  - Work the same way as `jq` for the "Types and Values" section
