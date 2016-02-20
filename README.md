@@ -7,6 +7,14 @@ Everything from the [Basic Filters](http://stedolan.github.io/jq/manual/#Basicfi
 supported - at least `yq` acts the same way as `jq` in the examples there. Object construction also more or less
 works.
 
+## Install dependencies
+
+    pip install -r requirements.txt
+
+## Install package
+
+    pip install .
+
 ## Testing
 There are basic unit-tests for some of the operators, but the meat of the test suite are the functional tests defined
 in `functional_tests/*.yml` files and run by `run_functional_tests.py`.
@@ -23,4 +31,3 @@ They're all started by `nosetests`
  - Package, release
  - Conditionals, comparisons
  - "Advanced features", Assignment from the `jq` manual
-
