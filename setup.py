@@ -24,6 +24,7 @@ if __name__ == '__main__':
             name=package_name,
             author=__author__,
             version=__version__,
+            description='Pure Python implementation of a subset of the features of jq for YAML documents',
             test_suite=package_name + '.tests',
             packages=find_packages(),
             package_dir={package_name: package_name},
