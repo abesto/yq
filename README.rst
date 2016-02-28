@@ -15,6 +15,13 @@ automatically supports the full feature set of ``jq``.
 If for some reason you need a pure python implementation, this repo is
 for you.
 
+Setup
+-----
+
+::
+
+    pip install yq
+
 What's implemented?
 -------------------
 
