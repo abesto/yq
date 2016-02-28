@@ -26,6 +26,14 @@ works.
 The parsing technology used in this project (parser combinators) is powerful
 enough to support parsing some of the more complex features of `jq`.
 
+## Install dependencies
+
+    pip install -r requirements.txt
+
+## Install package
+
+    pip install .
+
 ## Testing
 
 There are basic unit-tests for some of the operators, but the meat of the test suite are the functional tests defined
@@ -46,4 +54,3 @@ Here are some steps that'd need to be taken to bring the feature set of this `yq
  - Package, release
  - Conditionals, comparisons
  - "Advanced features", Assignment from the `jq` manual
-

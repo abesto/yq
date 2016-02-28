@@ -1,16 +1,17 @@
 import glob
 import yaml
 import cli
-
+from os import listdir, path
 
 def functional_test():
-    for file in glob.glob('functional_tests/*.yml'):
-        with open(file, 'r') as fd:
+    def one(f):
+        with open(f, 'r') as fd:
             suite = yaml.load(fd.read())
         for idx, case in enumerate(suite):
             if 'skip' in case and case['skip']:
                 continue
-            yield (FunctionalTestCase(file, idx, case),)
+            yield (FunctionalTestCase(f, idx, case),)
+    return map(one, listdir(path.join(path.dirname(path.dirname(__file__)), 'data')))
 
 
 class FunctionalTestCase(object):
@@ -28,4 +29,3 @@ class FunctionalTestCase(object):
             actual = output.next()
             print 'Actual: %s\nExpected: %s' % (actual, expected)
             assert actual == expected
-

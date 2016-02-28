@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import yaml
 import sys
 
@@ -19,6 +17,9 @@ def main(op_str, input):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) < 2:
+         print >> sys.stderr, 'Usage: {} <yaml>'.format(sys.argv[0])
+         sys.exit(2)
     op = sys.argv[1]
     input = sys.stdin.read()
     for item in main(op, input):
