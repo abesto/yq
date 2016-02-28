@@ -35,7 +35,7 @@ Known limitations
 -----------------
 
 The parsing technology used in this project (parser combinators) is
-powerful enough to support parsing some of the more complex features of
+not powerful enough to support parsing some of the more complex features of
 ``jq``.
 
 Hacking
