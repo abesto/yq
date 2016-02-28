@@ -26,15 +26,16 @@ works.
 The parsing technology used in this project (parser combinators) is powerful
 enough to support parsing some of the more complex features of `jq`.
 
-## Install dependencies
+## Hacking
 
-    pip install -r requirements.txt
+```
+virtualenv virtualenv
+. virtualenv/bin/activate
+pip install -r requirements.txt
 
-## Install package
-
-    pip install .
-
-## Testing
+# Optionally install as a package:
+pip install .
+```
 
 There are basic unit-tests for some of the operators, but the meat of the test suite are the functional tests defined
 in `functional_tests/*.yml` files and run by `run_functional_tests.py`.
