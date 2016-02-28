@@ -2,16 +2,15 @@ yq
 ==
 
 Pure Python implementation of a subset of the features of
-```jq`` <https://stedolan.github.io/jq/>`__ for ``YAML`` documents.
+|jq|_ for ``YAML`` documents.
 
 **Status**: No active development planned, maintenance work only.
 
-If you're looking for a way to do ``jq``-like filtering on ``YAML``
-documents, you'll probably be better off using the ``yq`` provided by
-```j2y`` <https://github.com/wildducktheories/y2j>`__. ``y2j`` provides
-a wrapper around ``jq`` that transforms the input ``YAML`` into
-``JSON``, calls out to ``jq``, then transforms the result back. This
-means it automatically supports the full feature set of ``jq``.
+If you're looking for a way to do ``jq``-like filtering on ``YAML`` documents,
+you'll probably be better off using the ``yq`` provided by |y2j|_. ``y2j``
+provides a wrapper around ``jq`` that transforms the input ``YAML`` into
+``JSON``, calls out to ``jq``, then transforms the result back. This means it
+automatically supports the full feature set of ``jq``.
 
 If for some reason you need a pure python implementation, this repo is
 for you.
@@ -66,3 +65,8 @@ this ``yq`` closer to that of ``jq``.
 -  Package, release
 -  Conditionals, comparisons
 -  "Advanced features", Assignment from the ``jq`` manual
+
+.. |jq| replace:: ``jq``
+.. _jq: https://stedolan.github.io/jq/
+.. |y2j| replace:: ``y2j``
+.. _y2j: https://github.com/wildducktheories/y2j
