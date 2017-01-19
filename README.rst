@@ -4,10 +4,11 @@ yq
 Pure Python implementation of a subset of the features of
 |jq|_ for ``YAML`` documents.
 
-**Status**: No active development planned, maintenance work only.
+**Status**: No active development planned, maintenance work only. This repository
+is superseded by https://github.com/kislyuk/yq in PyPI, starting with version ``2.0.0``.
 
 If you're looking for a way to do ``jq``-like filtering on ``YAML`` documents,
-you'll probably be better off using the ``yq`` provided by |y2j|_. ``y2j``
+you'll probably be better off using the ``yq`` provided by |y2j|_ or |kislyuk|_. They
 provides a wrapper around ``jq`` that transforms the input ``YAML`` into
 ``JSON``, calls out to ``jq``, then transforms the result back. This means it
 automatically supports the full feature set of ``jq``.
@@ -20,7 +21,7 @@ Setup
 
 ::
 
-    pip install yq
+    pip install 'yq < 2.0.0'
 
 What's implemented?
 -------------------
@@ -77,3 +78,5 @@ this ``yq`` closer to that of ``jq``.
 .. _jq: https://stedolan.github.io/jq/
 .. |y2j| replace:: ``y2j``
 .. _y2j: https://github.com/wildducktheories/y2j
+.. _kislyuk: https://github.com/kislyuk/yq
+.. |kislyuk| replace:: ``kislyuk/yq``
